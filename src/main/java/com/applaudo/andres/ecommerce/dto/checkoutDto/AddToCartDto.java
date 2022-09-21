@@ -1,4 +1,4 @@
-package com.applaudo.andres.ecommerce.dto.cartDto;
+package com.applaudo.andres.ecommerce.dto.checkoutDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

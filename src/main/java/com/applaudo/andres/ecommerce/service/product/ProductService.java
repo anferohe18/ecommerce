@@ -10,6 +10,4 @@ public interface ProductService {
     List<ProductDto> getProducts();
     ProductDto updateProduct(Integer productId, ProductDto productDto);
     ProductDto deleteProduct(Integer productId);
-
-
 }

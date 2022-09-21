@@ -1,4 +1,5 @@
 package com.applaudo.andres.ecommerce.dto.userDto;
+import com.applaudo.andres.ecommerce.entity.AddressEntity;
 import com.applaudo.andres.ecommerce.entity.PaymentMethod;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,7 @@ public class UserDto {
     @NotEmpty(message = "Phone must not be empty")
     @Pattern(regexp = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$")
     private String phone;
-    private String address;
+    private List<AddressEntity> address;
     private PaymentMethod paymentMethod;
 
 

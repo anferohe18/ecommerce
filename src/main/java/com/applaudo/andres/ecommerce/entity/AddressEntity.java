@@ -7,28 +7,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "products")
-public class ProductEntity {
+@Table(name = "address_entity")
+public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull
-    private String name;
-    @NotNull
-    private Integer availableQuantity;
-    @NotNull
-    private Double price;
+    private String addressType;
+    private String address;
 
     @JsonIgnore
-    @OneToMany()
-    private List<CheckoutEntity> carts;
+    @ManyToOne
+    private UserEntity user;
 }
-

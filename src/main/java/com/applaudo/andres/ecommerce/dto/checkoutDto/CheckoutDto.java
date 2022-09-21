@@ -1,4 +1,4 @@
-package com.applaudo.andres.ecommerce.dto.cartDto;
+package com.applaudo.andres.ecommerce.dto.checkoutDto;
 
 import com.applaudo.andres.ecommerce.entity.ProductEntity;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartDto2 {
+public class CheckoutDto {
 
     private int id;
     @NotNull
@@ -27,7 +27,9 @@ public class CartDto2 {
     private float price;
     private Date date;
 
-    public CartDto2(ProductEntity product, Integer quantity, UserEntity user){
+    private String deliveryAddress;
+
+    public CheckoutDto(ProductEntity product, Integer quantity, UserEntity user){
         this.product = product;
         this.quantity = quantity;
         this.user = user;

@@ -1,14 +1,18 @@
 package com.applaudo.andres.ecommerce.service.user;
 
+import com.applaudo.andres.ecommerce.dto.userDto.SigInDto;
 import com.applaudo.andres.ecommerce.dto.userDto.UserDto;
+
+import java.security.Principal;
 
 public interface UserService {
 
-    UserDto createUser(UserDto user);
-    UserDto deleteUser(Integer id);
+    SigInDto LogInUser(SigInDto sigInDto);
 
     UserDto updateUser(UserDto user);
 
-    UserDto findUserById(Integer id);
+    UserDto findUserByEmail(String email);
+
+    Object getEmailFromToken(Principal principal);
 
 }

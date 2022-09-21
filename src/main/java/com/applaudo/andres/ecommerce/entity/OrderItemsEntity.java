@@ -26,12 +26,6 @@ public class OrderItemsEntity {
     private Double price;
 
     private Date date;
-    /*
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false)
-    private OrderEntity order;
-
-     */
 
     @OneToOne()
     @JoinColumn(name = "product_id", referencedColumnName = "id")

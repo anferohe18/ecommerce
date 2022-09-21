@@ -22,5 +22,14 @@ public class RestExceptionHandler {
     public ResponseEntity<Object> handleOrderNotFoundException(OrderNotFoundException msg){
         return buildResponseEntity(new ErrorResponse(HttpStatus.BAD_REQUEST, msg.getMessage()));
     }
+    @ExceptionHandler(AuthenticationFailException.class)
+    public ResponseEntity<Object> handleAuthenticationFailException(AuthenticationFailException msg){
+        return buildResponseEntity(new ErrorResponse(HttpStatus.FORBIDDEN, msg.getMessage()));
+    }
+
+    @ExceptionHandler(PaymentNotFoundException.class)
+    public ResponseEntity<Object> handlePaymentNotFoundException(PaymentNotFoundException msg){
+        return buildResponseEntity(new ErrorResponse(HttpStatus.BAD_REQUEST,msg.getMessage()));
+    }
 
 }

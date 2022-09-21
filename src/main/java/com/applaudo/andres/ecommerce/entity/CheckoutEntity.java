@@ -14,23 +14,24 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CartEntity {
+public class CheckoutEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JsonIgnore
-    @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private UserEntity user;
-    @ManyToOne(targetEntity = ProductEntity.class,fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ProductEntity product;
     private Integer quantity;
     private Date date;
+    private String deliveryAddress;
 
-    public CartEntity(ProductEntity product, Integer quantity, UserEntity user){
+    public CheckoutEntity(ProductEntity product, Integer quantity, UserEntity user){
         this.product = product;
         this.quantity = quantity;
         this.user = user;

@@ -1,8 +1,7 @@
 package com.applaudo.andres.ecommerce.dto.orderDto;
 
-import com.applaudo.andres.ecommerce.dto.cartDto.CartDto;
+import com.applaudo.andres.ecommerce.entity.AddressEntity;
 import com.applaudo.andres.ecommerce.entity.OrderItemsEntity;
-import com.applaudo.andres.ecommerce.entity.PaymentMethod;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
 import lombok.Data;
 
@@ -21,5 +20,7 @@ public class OrderDtoFull {
     private List<OrderItemsEntity> orderItems;
 
     private UserEntity user;
+
+    private String deliveryAddress;
 
 }

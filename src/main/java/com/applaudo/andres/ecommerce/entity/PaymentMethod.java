@@ -17,9 +17,7 @@ public class PaymentMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonIgnore
     private String methodName;
-
 
     public PaymentMethod(String methodName){
         this.methodName = methodName;

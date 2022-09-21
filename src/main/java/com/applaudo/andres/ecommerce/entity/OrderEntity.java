@@ -27,12 +27,16 @@ public class OrderEntity {
 
     private Double totalPrice;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany()
     private List<OrderItemsEntity> orderItems;
 
-    @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    private String deliveryAddress;
+
+
 
 
 }

@@ -1,6 +1,6 @@
-package com.applaudo.andres.ecommerce.dto.cartDto;
+package com.applaudo.andres.ecommerce.dto.checkoutDto;
 
-import com.applaudo.andres.ecommerce.entity.CartEntity;
+import com.applaudo.andres.ecommerce.entity.CheckoutEntity;
 import com.applaudo.andres.ecommerce.entity.ProductEntity;
 import lombok.Data;
 
@@ -15,7 +15,7 @@ public class CartItemDto {
     @NotNull
     private ProductEntity product;
 
-    public CartItemDto(CartEntity entity){
+    public CartItemDto(CheckoutEntity entity){
         this.setID(entity.getId());
         this.setQuantity(entity.getQuantity());
         this.setProduct(entity.getProduct());

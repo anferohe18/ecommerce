@@ -31,8 +31,7 @@ public class ProductServiceImp implements ProductService {
         Optional<ProductEntity> optionalProduct = productRepository.findById(productId);
         if(optionalProduct.isPresent()){
             ProductEntity productEntity = optionalProduct.get();
-            ProductDto productDto = productMapper.productEntity2ProductDto(productEntity);
-            return productDto;
+            return productMapper.productEntity2ProductDto(productEntity);
         }
         return null;
     }

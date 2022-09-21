@@ -14,6 +14,7 @@ public class OrderMapper {
         order.setTotalPrice(orderDto.getTotalPrice());
         order.setOrderItems(orderDto.getOrderItems());
         order.setUser(orderDto.getUser());
+        order.setDeliveryAddress(order.getDeliveryAddress());
         return order;
     }
 
@@ -24,6 +25,7 @@ public class OrderMapper {
         order.setTotalPrice(orderEntity.getTotalPrice());
         order.setOrderItems(orderEntity.getOrderItems());
         order.setUser(orderEntity.getUser());
+        order.setDeliveryAddress(orderEntity.getDeliveryAddress());
         return order;
     }
 

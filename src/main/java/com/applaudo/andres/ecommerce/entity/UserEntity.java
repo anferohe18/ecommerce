@@ -1,6 +1,5 @@
 package com.applaudo.andres.ecommerce.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,11 +40,11 @@ public class UserEntity {
     @Pattern(regexp = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$")
     private String phone;
 
-    private String address;
+    @OneToMany(mappedBy = "user")
+    private List<AddressEntity> address;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne()
     private PaymentMethod paymentMethod;
-
 
     public UserEntity(String name, String lastName, String email, String password, String phone){
         this.name = name;

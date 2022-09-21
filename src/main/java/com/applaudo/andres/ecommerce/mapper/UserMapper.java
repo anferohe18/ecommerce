@@ -3,19 +3,23 @@ package com.applaudo.andres.ecommerce.mapper;
 import com.applaudo.andres.ecommerce.dto.userDto.UserDto;
 import com.applaudo.andres.ecommerce.entity.PaymentMethod;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class UserMapper {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserEntity userDto2UserEntity(UserDto userDto){
         UserEntity userEntity = new UserEntity();
         userEntity.setName(userDto.getName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
-        userEntity.setPassword(userDto.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userEntity.setPhone(userDto.getPhone());
         return userEntity;
     }
@@ -37,7 +41,7 @@ public class UserMapper {
         userEntity.setName(userDto.getName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
-        userEntity.setPassword(userDto.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userEntity.setPhone(userDto.getPhone());
         userEntity.setAddress(userDto.getAddress());
         userEntity.setPaymentMethod( userDto.getPaymentMethod());

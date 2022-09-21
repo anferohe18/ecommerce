@@ -1,6 +1,7 @@
 package com.applaudo.andres.ecommerce.service.payment;
 
 import com.applaudo.andres.ecommerce.entity.PaymentMethod;
+import com.applaudo.andres.ecommerce.exceptions.PaymentNotFoundException;
 import com.applaudo.andres.ecommerce.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,12 @@ public class PaymentServiceImp implements PaymentService {
 
     @Override
     public PaymentMethod getPaymentMethod(Integer paymentId) {
-        return paymentRepository.getReferenceById(paymentId);
+        Optional<PaymentMethod> paymentOptional = paymentRepository.findById(paymentId);
+        if(paymentOptional.isPresent()){
+            return paymentOptional.get();
+        }else{
+            throw new PaymentNotFoundException("The payment Method was not found");
+        }
     }
 
     @Override
