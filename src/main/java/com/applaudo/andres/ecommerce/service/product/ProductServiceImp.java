@@ -1,9 +1,14 @@
 package com.applaudo.andres.ecommerce.service.product;
 
+import com.applaudo.andres.ecommerce.dto.AddressDto;
 import com.applaudo.andres.ecommerce.dto.ProductDto;
+import com.applaudo.andres.ecommerce.dto.userDto.UserDto;
+import com.applaudo.andres.ecommerce.entity.AddressEntity;
 import com.applaudo.andres.ecommerce.entity.ProductEntity;
+import com.applaudo.andres.ecommerce.entity.UserEntity;
 import com.applaudo.andres.ecommerce.mapper.ProductMapper;
 import com.applaudo.andres.ecommerce.repository.ProductRepository;
+import com.applaudo.andres.ecommerce.service.address.AddressServiceImp;
 import com.applaudo.andres.ecommerce.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,6 +49,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ProductDto updateProduct(Integer productId, ProductDto productDto) {
+
         Optional<ProductEntity> optionalUser = productRepository.findById(productId);
         if (optionalUser.isPresent()) {
             ProductEntity productFound = optionalUser.get();

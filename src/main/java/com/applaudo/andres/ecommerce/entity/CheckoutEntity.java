@@ -1,14 +1,12 @@
 package com.applaudo.andres.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor

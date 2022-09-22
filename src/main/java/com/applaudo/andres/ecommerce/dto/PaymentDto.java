@@ -1,9 +1,16 @@
 package com.applaudo.andres.ecommerce.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+import javax.validation.constraints.NotNull;
+
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
 public class PaymentDto {
     private int id;
+    @NotNull
     private String paymentMethod;
+
 }

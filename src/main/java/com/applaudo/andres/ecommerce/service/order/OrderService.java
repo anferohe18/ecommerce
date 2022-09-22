@@ -10,6 +10,4 @@ public interface OrderService {
     OrderDtoFull placeOrder(Integer paymentId);
     List<OrderDtoFull> getOrderByUser();
     OrderDtoFull getOrderById(Integer id);
-    OrderDtoFull updateAddress(AddressDto addressDto);
-
 }

@@ -7,12 +7,12 @@ import java.security.Principal;
 
 public interface UserService {
 
-    SigInDto LogInUser(SigInDto sigInDto);
-
     UserDto updateUser(UserDto user);
 
     UserDto findUserByEmail(String email);
 
     Object getEmailFromToken(Principal principal);
+
+    UserDto getUserFromToken();
 
 }

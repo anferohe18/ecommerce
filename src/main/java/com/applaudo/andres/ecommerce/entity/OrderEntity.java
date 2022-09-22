@@ -1,16 +1,13 @@
 package com.applaudo.andres.ecommerce.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +25,7 @@ public class OrderEntity {
     private Double totalPrice;
 
     @OneToMany()
-    private List<OrderItemsEntity> orderItems;
+    private List<OrderItemEntity> orderItems;
 
     @ManyToOne()
     @JoinColumn(name = "user_id")

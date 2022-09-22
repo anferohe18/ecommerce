@@ -38,6 +38,6 @@ public class PaymentServiceImp implements PaymentService {
             paymentActual.setId(newPaymentId);
             return paymentActual;
         }
-            return null;
+        throw new PaymentNotFoundException("The payment Method was not found");
     }
 }

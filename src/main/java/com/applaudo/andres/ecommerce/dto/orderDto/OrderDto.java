@@ -11,6 +11,6 @@ public class OrderDto {
     private Integer id;
     @NotNull
     private UserEntity userId;
-
+    @NotNull
     private String deliveryAddress;
 }

@@ -1,7 +1,6 @@
 package com.applaudo.andres.ecommerce.repository;
 
 import com.applaudo.andres.ecommerce.entity.OrderEntity;
-import com.applaudo.andres.ecommerce.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

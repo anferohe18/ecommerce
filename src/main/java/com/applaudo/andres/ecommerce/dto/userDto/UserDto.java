@@ -3,6 +3,7 @@ import com.applaudo.andres.ecommerce.entity.AddressEntity;
 import com.applaudo.andres.ecommerce.entity.PaymentMethod;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDto {
 
     private Integer id;

@@ -32,4 +32,9 @@ public class RestExceptionHandler {
         return buildResponseEntity(new ErrorResponse(HttpStatus.BAD_REQUEST,msg.getMessage()));
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException msg){
+        return buildResponseEntity(new ErrorResponse(HttpStatus.NOT_FOUND, msg.getMessage()));
+    }
+
 }

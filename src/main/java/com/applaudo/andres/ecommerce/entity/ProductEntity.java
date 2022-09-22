@@ -1,10 +1,7 @@
 package com.applaudo.andres.ecommerce.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "products")
 public class ProductEntity {
     @Id
@@ -30,5 +28,12 @@ public class ProductEntity {
     @JsonIgnore
     @OneToMany()
     private List<CheckoutEntity> carts;
+
+    public ProductEntity(Integer id, String name, Integer availableQuantity, Double price){
+        this.id = id;
+        this.name = name;
+        this.availableQuantity = availableQuantity;
+        this.price = price;
+    }
 }
 

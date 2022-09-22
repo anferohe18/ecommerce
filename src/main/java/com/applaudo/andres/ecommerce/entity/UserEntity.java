@@ -1,9 +1,6 @@
 package com.applaudo.andres.ecommerce.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -18,6 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "users")
 public class UserEntity {
     @Id
@@ -46,7 +44,7 @@ public class UserEntity {
     @OneToOne()
     private PaymentMethod paymentMethod;
 
-    public UserEntity(String name, String lastName, String email, String password, String phone){
+    public UserEntity(String name, String lastName, String email, String password, String phone) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -54,16 +52,14 @@ public class UserEntity {
         this.phone = phone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(getName(), that.getName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassword(), that.getPassword()) && Objects.equals(getPhone(), that.getPhone());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getLastName(), getEmail(), getPassword(), getPhone());
+    public UserEntity(int id, String name, String lastName, String email, String password, String phone, List<AddressEntity> address) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
     }
 }
+

@@ -45,7 +45,7 @@ public class CheckoutServiceImp implements CheckoutService {
     @Override
     public CheckoutDto addToCart(AddToCartDto cartDto) {
         ProductDto product = productService.getProduct(cartDto.getProductId());
-        UserDto user = getUserFromToken();
+        UserDto user = userService.getUserFromToken();
         ProductEntity productEntity = productMapper.productDtoFull2ProductEntity((product));
         UserEntity userEntity = userMapper.userDtoFull2UserEntityFull(user);
         CheckoutEntity checkoutEntity = new CheckoutEntity(productEntity, cartDto.getQuantity(),userEntity);
@@ -55,7 +55,7 @@ public class CheckoutServiceImp implements CheckoutService {
 
     @Override
     public CartDto listCartItems() {
-        UserDto user = getUserFromToken();
+        UserDto user = userService.getUserFromToken();
         UserEntity userEntity = userMapper.userDtoFull2UserEntityFull(user);
         List<CheckoutEntity> cartList = checkoutRepository.findAllByUser_email(userEntity.getEmail());
         List<CartItemDto> cartItems = new ArrayList<>();
@@ -82,35 +82,36 @@ public class CheckoutServiceImp implements CheckoutService {
     @Override
     public CheckoutDto deleteCartItem(Integer itemId) {
         if(checkoutRepository.existsById(itemId)){
-            CheckoutDto car = checkoutMapper.cartEntity2CartDto(checkoutRepository.getReferenceById(itemId));
+            CheckoutDto cart = checkoutMapper.cartEntity2CartDto(checkoutRepository.getReferenceById(itemId));
             checkoutRepository.deleteById(itemId);
-            return car;
+            return cart;
         }
         throw new CartItemNotExistException("Cart Id is invalid: " + itemId);
     }
 
     @Override
     public List<CheckoutDto> setDeliveryAddress(String typeAddress) {
-        UserDto user = getUserFromToken();
+        UserDto user = userService.getUserFromToken();
         List<AddressDto> clientAddresses = addressService.findAddressByUser(user);
         String addressChosen = null;
         for(AddressDto addressDto: clientAddresses){
             if(addressDto.getType().equals(typeAddress)){
                 addressChosen = addressDto.getAddress();
             }
+
         }
-        List<CheckoutEntity> cart = checkoutRepository.findAllByUser_email(user.getEmail());
-        for(CheckoutEntity checkoutEntity : cart){
+        List<CheckoutEntity> cartList = checkoutRepository.findAllByUser_email(user.getEmail());
+        for(CheckoutEntity checkoutEntity : cartList){
             checkoutEntity.setDeliveryAddress(addressChosen);
             checkoutRepository.save(checkoutEntity);
         }
-        return checkoutMapper.cartEntityList2CartDtoList(cart);
+        return checkoutMapper.cartEntityList2CartDtoList(cartList);
     }
 
 
     @Override
     public CheckoutDto updateAddress(AddressDto address) {
-        UserDto user = getUserFromToken();
+        UserDto user = userService.getUserFromToken();
         AddressDto newAddress = addressService.addAddress(address, user);
         CheckoutEntity cart = checkoutRepository.findByUser_email(user.getEmail());
         cart.setDeliveryAddress(newAddress.getAddress());
@@ -128,10 +129,5 @@ public class CheckoutServiceImp implements CheckoutService {
         return new CartItemDto(cart);
     }
 
-    public UserDto getUserFromToken(){
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        Object email = userService.getEmailFromToken(principal);
-        return userService.findUserByEmail(email.toString());
-    }
 
 }

@@ -4,6 +4,7 @@ import com.applaudo.andres.ecommerce.dto.userDto.SigInDto;
 import com.applaudo.andres.ecommerce.dto.userDto.UserDto;;
 import com.applaudo.andres.ecommerce.entity.UserEntity;
 import com.applaudo.andres.ecommerce.exceptions.AuthenticationFailException;
+import com.applaudo.andres.ecommerce.exceptions.UserNotFoundException;
 import com.applaudo.andres.ecommerce.mapper.UserMapper;
 import com.applaudo.andres.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,18 +33,6 @@ public class UserServiceImp implements UserService{
 
 
     @Override
-    public SigInDto LogInUser(SigInDto credentials) {
-        Principal principal = SecurityContextHolder.getContext().getAuthentication();
-        UserEntity entity = userRepository.findByEmail(credentials.getEmail());
-        if (getEmailFromToken(principal).equals(entity.getEmail())) {
-            return credentials;
-        } else {
-            throw new AuthenticationFailException("failed authentication");
-        }
-    }
-
-
-    @Override
     public UserDto updateUser(UserDto user) {
             UserDto userDto = new UserDto();
             userDto.setId(user.getId());
@@ -69,13 +58,21 @@ public class UserServiceImp implements UserService{
             return userDto;
         }
         else{
-            throw new EntityNotFoundException();
+            throw new UserNotFoundException("User was not found");
         }
     }
+
     @Override
     public  Object getEmailFromToken(Principal principal){
         JwtAuthenticationToken jwtToken = (JwtAuthenticationToken) principal;
         return jwtToken.getToken().getClaims().get("email");
 
+    }
+
+    @Override
+    public  UserDto getUserFromToken() {
+        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        Object email = getEmailFromToken(principal);
+        return findUserByEmail(email.toString());
     }
 }
